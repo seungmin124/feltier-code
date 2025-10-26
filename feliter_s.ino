@@ -8,7 +8,7 @@ DHT11 dht11(2);
 int temp, humi;
 bool peltierOn = false;
 
-void setup() {
+void setup() {                         //펠티어 온도 제어 
   Serial.begin(9600);
   pinMode(3, OUTPUT);
   lcd.init();
@@ -24,7 +24,7 @@ void loop() {
     lcd.setCursor(0,1);
     lcd.print("Humi: "); lcd.print(humi); lcd.print(" %   ");
 
-    // 히스테리시스 적용: 23 이상 켜기, 21 이하 끄기
+    // 히스테리시스 적용: 34이상 키고, 25이하 끄기
     if (!peltierOn && temp >=34) {
       digitalWrite(3, LOW);
       peltierOn = true;
@@ -42,4 +42,5 @@ void loop() {
 
   delay(2000);
 }
+
 
